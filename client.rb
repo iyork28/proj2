@@ -30,11 +30,11 @@ class Client
       info_hash:  URI::encode(Digest::SHA1.hexdigest @torrent["info"].bencode),
       # peer_id:    URI::encode(Mac.addr.tr(':','').concat "12345678"),
       peer_id:    "-IY0001-000000000001", 
-      port:       6681,
+      port:       6881,
       uploaded:   0,
       downloaded: 0,
       left:       sum,
-      compact:    0,
+      compact:    1,
       no_peer_id: 0
     }
   end
