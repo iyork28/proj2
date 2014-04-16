@@ -1,10 +1,18 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    bencode (0.8.0)
+    bencodr (3.0.2)
+    http (0.6.0)
+      http_parser.rb (~> 0.6.0)
+    http_parser.rb (0.6.0)
+    macaddr (1.7.1)
+      systemu (~> 2.6.2)
+    systemu (2.6.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bencode
+  bencodr
+  http
+  macaddr

@@ -1,3 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'bencode'
+gem 'bencodr'
+gem 'http'
+gem 'macaddr'
