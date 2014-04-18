@@ -10,7 +10,6 @@ class Client
   end
   
   def run!
-    # test = HTTP.get @torrent["announce"], params: make_params_hash
     uri = URI(@torrent["announce"])
     uri.query = URI.encode_www_form make_params_hash
     res = Net::HTTP.get_response(uri)
