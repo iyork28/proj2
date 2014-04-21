@@ -1,4 +1,6 @@
 class Peer
+  attr_accessor :ip, :port, :response
+  
   
   def initialize(args)
     @ip         = IPAddr.ntop args[:ip]
@@ -8,6 +10,23 @@ class Peer
     @handshake  = gen_handshake
     
     # @sock = TC
+  end
+  
+  def connect
+    @connection = TCPSocket.new(@ip, @port)
+  end
+  
+  def start_handshake
+    if @connection.nil?
+      connect
+      @connection.write(@handshake)
+    else
+      @connection.write(@handshake)
+    end
+        
+    @response = Response.new(connection: @connection)
+    
+    # puts @connection.getbyte
   end
   
   private

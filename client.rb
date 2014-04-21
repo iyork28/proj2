@@ -24,20 +24,32 @@ class Client
     peers = body["peers"].scan(/.{6}/).map {|p| p.unpack('a4n')}
     # puts peers
     
-    peers.each do |ip, port| 
-      @peers = Peer.new({
+    # puts peers[1][0].class
+    
+    peers.each do |ip, port|
+      a = Peer.new({
         ip:         ip,
         port:       port,
         peer_id:    @peer_id,
         info_hash:  @info_hash
       })
+      @peers << a
+            
+      #first.start_handshake
     end
     
+    # puts @peers
+    @peers[1].start_handshake
+        
     # @peers
     
   end
   
   private
+  
+  def build_peer
+    
+  end
   
   def make_params_hash
     sum = 0
