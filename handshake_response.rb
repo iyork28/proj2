@@ -1,4 +1,4 @@
-class Response
+class HandshakeResponse
   
   attr_reader :info_hash
   

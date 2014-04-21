@@ -8,7 +8,7 @@ require 'socket'
 
 require_relative 'client'
 require_relative 'peer'
-require_relative 'response'
+require_relative 'handshake_response'
 
 BEncodr.include!
 torrent_file = ARGV[0]
