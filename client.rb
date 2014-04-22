@@ -33,25 +33,27 @@ class Client
       
     end
     
+    @block_queue = BlockQueue.new(size: @total_size)
+    
     # puts @peers
     @peers[1].start_handshake # until I do multithreading
     
-    @peers[1].start!
+    @peers[1].start! @block_queue
     
   end
   
   private
   
   def make_params_hash
-    sum = 0
-    @torrent["info"]["files"].each { |file| sum += file["length"] }
+    @total_size = 0
+    @torrent["info"]["files"].each { |file| @total_size += file["length"] }
     {
       info_hash:  @info_hash,
       peer_id:    @peer_id,
       port:       6881,
       uploaded:   0,
       downloaded: 0,
-      left:       sum,
+      left:       @total_size,
       compact:    1,
       no_peer_id: 0
     }
