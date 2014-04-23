@@ -15,4 +15,8 @@ class Block
     @data = nil
   end
   
+  def is_active
+    @status == :active
+  end
+  
 end

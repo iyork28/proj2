@@ -13,13 +13,22 @@ class Peer
   end
   
   def connect
-    @connection = TCPSocket.new(@ip, @port)
+    begin
+      @connection = TCPSocket.new(@ip, @port)
+    rescue => exception
+      puts "Connection with #{@ip} failed"
+      return false
+    end
+    
   end
   
   def start_handshake
     if @connection.nil?
-      connect
-      @connection.write(@handshake)
+      if connect
+        @connection.write(@handshake)
+      else
+        return false
+      end
     else
       @connection.write(@handshake)
     end
@@ -30,13 +39,16 @@ class Peer
       @bitfield = get_bitfield
       
     end
-    
+    true
   end
   
-  def start! block_queue
+  def start! args
     # send interested
-    t = Thread.new { @message_handler = MessageHandler.new(peer: self, queue: block_queue) }
-    t.join
+    # t = Thread.new { @message_handler = MessageHandler.new({peer: self, queue: args[:block_queue], data_hash: args[:data_hash], mutex: args[:mutex]} )}
+    # t.join
+    
+    @message_handler = MessageHandler.new({ peer: self, queue: args[:block_queue], data_hash: args[:data_hash], mutex: args[:mutex] })
+    
     # @message_handler = MessageHandler.new(peer: self)
     
   end
