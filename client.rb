@@ -58,6 +58,22 @@ class Client
     name = @torrent["info"]["name"]
     block_len = 2**14
     if @torrent["info"]["files"].nil? # single?
+      len = file["length"]
+      blocks = len / (block_len)
+      rem = len - (blocks*(block_len))
+      
+      data = ""
+      (0..blocks).each { |block| new_file << @data_hash[(block * block_len).to_s(2)] }
+      
+      if rem == 0
+        # done
+      else
+        offset = true
+        offset_string = @data_hash[((blocks+1) * block_len).to_s].to_s(2)
+        puts offset_string.class
+        new_file << (offset_string[0,rem-1])
+        last_block = (blocks+1) * block_len
+        last_bit = rem
       
     else
       f = []

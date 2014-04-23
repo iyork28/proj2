@@ -1,0 +1,15 @@
+I chose to write this assignment in Ruby. 
+
+In case whomever is reading this is unfamiliar with Ruby, simply install ruby and bundle and run 'bundle'. This will install the gems that I used, which can be seen in my Gemfile.
+
+I wrote this for Ruby 2.1.1, but I believe that most everything should work in older ruby versions.
+
+To run, execute:
+
+> ruby main.rb [torrent_file]
+
+Honestly, I didn't quite get the writing to file part to work, but it will create a couple of blankish files in whatever directory you execute the code in... Sorry about that!
+
+Thanks!
+
+- Ian York (Author)
