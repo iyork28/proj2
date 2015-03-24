@@ -120,6 +120,9 @@ class MessageHandler
       if @data_hash[@block.begn.to_s].nil?
         @data_hash[@block.begn.to_s] = data
       end
+      
+      puts "this"
+      puts data
     
     }
     

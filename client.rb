@@ -74,7 +74,7 @@ class Client
         new_file << (offset_string[0,rem-1])
         last_block = (blocks+1) * block_len
         last_bit = rem
-      
+      end
     else
       f = []
       files = @torrent["info"]["files"]
